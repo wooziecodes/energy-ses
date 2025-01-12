@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENERGY-SES: Discussion & Limitations</title>
+    <link rel="stylesheet" href="css/template.css">
+    <style>
+        .discussion-content {
+            background: var(--section-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .limitation-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .limitation-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .recommendation {
+            background: #f8f9fa;
+            border-left: 4px solid #4caf50;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .citation {
+            color: #666;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .future-research {
+            background: #e8f5e9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .future-research h4 {
+            color: #2e7d32;
+            margin-bottom: 1rem;
+        }
+
+        .key-point {
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container hero">
+            <h1>ENERGY-SES</h1>
+            <p>Socioeconomic Patterns in London's Energy Consumption</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="introduction.html">Introduction</a></li>
+                <li><a href="literature.html">Literature Review</a></li>
+                <li><a href="methodology.html">Methodology</a></li>
+                <li><a href="visualization.html">Visualisation</a></li>
+                <li><a href="findings.html">Findings</a></li>
+                <li><a href="discussion.html" class="active">Discussion</a></li>
+                <li><a href="implications.html">Implications & Conclusions</a></li>
+                <li><a href="bibliography.html">Bibliography</a></li>
+                <li><a href="profiles.html">Our Profiles</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="discussion-content">
+                <h2>Discussion & Limitations</h2>
+
+                <!-- Borough Level Data Limitation -->
+                <div class="limitation-card">
+                    <h3>Borough-Level Data Limitations</h3>
+                    <p>The model is limited by the use of borough level data, due to a lack of household level data for gas consumption. This aggregation makes it challenging to develop effective policy recommendations for decreasing gas consumption.</p>
+                    
+                    <div class="key-point">
+                        <p>Understanding household-level relationships is crucial as existing literature shows that household income has a substantial effect on household energy consumption <span class="citation">(Gassar, Yun and Kim, 2019, p.7)</span>.</p>
+                    </div>
+
+                    <div class="recommendation">
+                        <p>We recommend:</p>
+                        <ul>
+                            <li>Collection of household level data for income level</li>
+                            <li>Direct measurement of electricity and gas consumption</li>
+                            <li>Avoiding reliance on survey data</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Electricity Consumption Model Limitation -->
+                <div class="limitation-card">
+                    <h3>Lack of Electricity Consumption Model</h3>
+                    <p>The absence of a regression model for electricity consumption limits our understanding of potential differences in consumption patterns between gas and electricity.</p>
+                    
+                    <div class="key-point">
+                        <p>"Per capita electricity consumption is ... more sensitive to changes in income than gas consumption" <span class="citation">(Brounen, Kok and Quigley, 2012, p.932)</span></p>
+                    </div>
+
+                    <div class="future-research">
+                        <h4>Future Research Direction</h4>
+                        <p>This area requires investigation by experienced data scientists to develop a more comprehensive understanding of energy consumption patterns.</p>
+                    </div>
+                </div>
+
+                <!-- Household Count Limitation -->
+                <div class="limitation-card">
+                    <h3>Household Count Control</h3>
+                    <p>The model didn't control for the number of households per borough, potentially causing inflated predictions for mean gas consumption. Boroughs with fewer households may have disproportionate influence on predicted values.</p>
+                    
+                    <div class="recommendation">
+                        <p>Future studies should incorporate controls for the number of households per borough to improve prediction accuracy.</p>
+                    </div>
+                </div>
+
+                <!-- Appliance Choice Limitation -->
+                <div class="limitation-card">
+                    <h3>Appliance Choice Considerations</h3>
+                    <p>While household appliance choices significantly impact energy consumption, data limitations prevented controlling for this variable <span class="citation">(Brounen, Kok and Quigley, 2012, p.941)</span>.</p>
+                    
+                    <div class="future-research">
+                        <h4>Future Research Direction</h4>
+                        <p>Investigation needed into how household income levels influence appliance choices and subsequent energy consumption <span class="citation">(Steemers and Yun, 2009)</span>.</p>
+                    </div>
+                </div>
+
+                <!-- Building Type Limitation -->
+                <div class="limitation-card">
+                    <h3>Building Type Variations</h3>
+                    <p>The model didn't account for different types of residential buildings, despite evidence that building type affects household energy consumption <span class="citation">(Mohajeri et al., 2023, pp.2-3)</span>.</p>
+                    
+                    <div class="key-point">
+                        <p>Detached buildings show highest consumption for both gas and electricity <span class="citation">(Mohajeri et al., 2023)</span>.</p>
+                    </div>
+
+                    <div class="recommendation">
+                        <p>Future research should:</p>
+                        <ul>
+                            <li>Control for different residence types</li>
+                            <li>Consider borough-specific building type distributions</li>
+                            <li>Account for both building characteristics and occupancy profiles <span class="citation">(Mohajeri et al., 2023, p.4)</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 ENERGY-SES Project • QM2 Group XX</p>
+        </div>
+    </footer>
+</body>
+</html>
