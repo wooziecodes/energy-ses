@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENERGY-SES: Introduction</title>
+    <link rel="stylesheet" href="css/template.css">
+    <style>
+        .intro-content {
+            background: var(--section-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .intro-section {
+            margin-bottom: 3rem;
+        }
+
+        .intro-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .stat-card .number {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .question-highlight {
+            background: var(--background-color);
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .question-highlight p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .limitations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .limitation-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .limitation-card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .crisis-banner {
+            background: linear-gradient(45deg, #ff4444, #ff6b6b);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .crisis-banner h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .impact-quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1rem;
+            margin: 2rem 0;
+            color: #555;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .urgency-point {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .alert-banner {
+            background: linear-gradient(135deg, #ff4444 0%, #ff0000 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff4444;
+            margin-bottom: 1rem;
+        }
+
+        .quote-box {
+            background: #f8f9fa;
+            border-left: 5px solid #ff4444;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+
+        .regional-impact {
+            background: #fff8f8;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .regional-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .regional-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container hero">
+            <h1>ENERGY-SES</h1>
+            <p>Socioeconomic Patterns in London's Energy Consumption</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="introduction.html" class="active">Introduction</a></li>
+                <li><a href="literature.html">Literature Review</a></li>
+                <li><a href="methodology.html">Methodology</a></li>
+                <li><a href="visualization.html">Visualisation</a></li>
+                <li><a href="findings.html">Findings</a></li>
+                <li><a href="discussion.html">Discussion</a></li>
+                <li><a href="implications.html">Implications & Conclusions</a></li>
+                <li><a href="bibliography.html">Bibliography</a></li>
+                <li><a href="profiles.html">Our Profiles</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="intro-content">
+                <!-- Context -->
+                <div class="intro-section">
+                    <h3>Research Context</h3>
+                    <p>Our group chose to focus on London boroughs for this research project due to their unique and diverse socioeconomic landscapes. London's boroughs provide a rich context for analyzing the relationship between income and energy consumption, offering insights into urban energy use across varied economic and residential profiles.</p>
+                </div>
+
+                <!-- Key Statistics -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="number">60%</div>
+                        <p>Rise in gas prices since 2021</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">12%</div>
+                        <p>London households in fuel poverty</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">50.7%</div>
+                        <p>Model variation explained</p>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="alert-banner">
+                        <h2>Energy Crisis: A National Emergency</h2>
+                        <p>"Energy prices remain significantly higher than pre-crisis levels, with household debt reaching record highs" - Ofgem 2024</p>
+                    </div>
+        
+                    <div id="energy-dashboard"></div>
+        
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">£3B</div>
+                            <p>Total household energy debt in 2024</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">2.3M</div>
+                            <p>Households in energy debt</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">67%</div>
+                            <p>Increase in fuel poverty gap (2020-2023)</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">£1,761</div>
+                            <p>Average arrears without repayment plan</p>
+                        </div>
+                    </div>
+        
+                    <div class="quote-box">
+                        <p>"The aggregate fuel poverty gap in England increased by an estimated 67% between 2020 and 2023. While the extent of fuel poverty did not increase during the 'energy crisis', the depth of their fuel poverty did."</p>
+                        <small>- House of Commons Library, 2024</small>
+                    </div>
+        
+                    <div class="regional-impact">
+                        <h3>Regional Crisis Hotspots</h3>
+                        <div class="regional-grid">
+                            <div class="regional-card">
+                                <h4>West Midlands</h4>
+                                <p>19.6% in fuel poverty</p>
+                            </div>
+                            <div class="regional-card">
+                                <h4>Stoke-on-Trent</h4>
+                                <p>24.7% in fuel poverty</p>
+                            </div>
+                            <div class="regional-card">
+                                <h4>Birmingham</h4>
+                                <p>24.0% in fuel poverty</p>
+                            </div>
+                            <div class="regional-card">
+                                <h4>Yorkshire & Humber</h4>
+                                <p>17.0% in fuel poverty</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Rest of the content -->
+                </div>
+
+
+                <div class="container">
+                    <div class="intro-content">
+                        <div class="crisis-banner">
+                            <h2>London's Energy Crisis: A Growing Concern</h2>
+                            <p>With rising energy costs and increasing environmental pressures, understanding household energy consumption has never been more crucial.</p>
+                        </div>
+        
+                        <!-- Enhanced Stats Grid -->
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="number">60%</div>
+                                <p>Rise in gas prices since 2021</p>
+                            </div>
+                            <div class="stat-card">
+                                <div class="number">12%</div>
+                                <p>London households in fuel poverty</p>
+                            </div>
+                            <div class="stat-card">
+                                <div class="number">£2,500+</div>
+                                <p>Average annual energy bill per household</p>
+                            </div>
+                            <div class="stat-card">
+                                <div class="number">25%</div>
+                                <p>of UK's carbon emissions from domestic energy use</p>
+                            </div>
+                        </div>
+        
+                        <div class="impact-quote">
+                            "Energy poverty affects not just household finances, but also health, education, and overall quality of life. Understanding these patterns is crucial for creating effective policy solutions."
+                        </div>
+        
+                        <!-- Context with added urgency -->
+                        <div class="intro-section">
+                            <h3>Research Context</h3>
+                            <p>Our focus on London boroughs comes at a critical time when the city faces unprecedented challenges in energy consumption and affordability. The stark contrast between affluent and struggling neighborhoods presents a unique opportunity to understand how socioeconomic factors influence energy usage patterns.</p>
+                            
+                            <div class="urgency-point">
+                                <strong>Critical Impact:</strong> Rising energy costs disproportionately affect lower-income households, with some families spending over 10% of their income on energy bills.
+                            </div>
+                        </div>
+
+                <!-- Research Focus -->
+                <div class="intro-section">
+                    <h3>Research Focus</h3>
+                    <p>The relationship between income levels and energy consumption has long been a subject of interest among policymakers and researchers, particularly in urban settings where economic disparity and environmental concerns intersect. This research focuses on gas consumption in London, a global metropolis characterized by diverse socioeconomic conditions across its boroughs. Amid rising gas prices and growing concerns over energy efficiency, understanding the dynamics of household gas usage in relation to income is critical for developing targeted policies that balance economic equity and environmental sustainability.</p>
+                </div>
+
+                <!-- Research Question -->
+                <div class="intro-section">
+                    <h3>Research Question & Model</h3>
+                    <p>The primary aim of this research is to construct and evaluate a model that explains gas consumption patterns in London households. Specifically, the model incorporates key variables such as average income, average energy efficiency of dwellings, and the average number of people per household in each borough.</p>
+                    
+                    <div class="question-highlight">
+                        <p>Do households in boroughs with higher earners consume more gas, when average people per household and energy efficiency of dwellings are controlled for?</p>
+                    </div>
+
+                    <p>This research hypothesizes that higher-income households do consume more gas under these controlled conditions. By applying statistical modeling, this study delves into the interplay of income, household size, and energy efficiency, further exploring how these factors interact to influence domestic gas consumption.</p>
+                </div>
+
+                <!-- Methodology Preview -->
+                <div class="intro-section">
+                    <h3>Methodology Overview</h3>
+                    <p>To ensure the regression model produces accurate results and satisfies the assumptions of normal linear regression, comprehensive data cleaning was undertaken. This included addressing missing or extraneous data, standardizing variable formats, and ensuring consistency across datasets.</p>
+                </div>
+
+                <!-- Study Limitations -->
+                <div class="intro-section">
+                    <h3>Study Limitations</h3>
+                    <div class="limitations-grid">
+                        <div class="limitation-card">
+                            <h4>Household Count</h4>
+                            <p>The model did not control for the number of households per borough, potentially causing disproportionate influence from boroughs with fewer households.</p>
+                        </div>
+                        <div class="limitation-card">
+                            <h4>Appliance Data</h4>
+                            <p>The study was unable to account for the impact of household appliances on gas consumption due to a lack of data.</p>
+                        </div>
+                        <div class="limitation-card">
+                            <h4>Building Types</h4>
+                            <p>The model did not account for residential building types, which can significantly influence energy consumption due to variations in factors such as square footage and building age.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="module">
+        import { renderEnergyDashboard } from './energy-charts.js';
+        renderEnergyDashboard(document.getElementById('energy-dashboard'));
+    </script>
+    <footer>
+        <div class="container">
+            <p>© 2024 ENERGY-SES Project • QM2 Group XX</p>
+        </div>
+    </footer>
+</body>
+</html>
