@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Roles - ENERGY-SES</title>
+    <link rel="stylesheet" href="css/template.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .team-member {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1rem auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .role {
+            color: #e67e22;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .interests {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .qm-application {
+            color: #666;
+            font-style: italic;
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        nav a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="introduction.html">Introduction</a></li>
+                <li><a href="literature.html">Literature Review</a></li>
+                <li><a href="methodology.html">Methodology</a></li>
+                <li><a href="visualization.html" class="active">Visualisation</a></li>
+                <li><a href="findings.html">Findings</a></li>
+                <li><a href="discussion.html">Discussion</a></li>
+                <li><a href="implications.html">Implications & Conclusions</a></li>
+                <li><a href="bibliography.html">Bibliography</a></li>
+                <li><a href="profiles.html">Our Profiles</a></li>
+            </ul>
+        </div>
+    </nav>
+    <h1>Our Team & Roles</h1>
+
+    <div class="team-grid">
+        <div class="team-member">
+            <img src="/api/placeholder/150/150" alt="Ruby de Lanerolle" class="profile-img">
+            <h2>Ruby de Lanerolle</h2>
+            <div class="role">Data Analysis, Methodology and Findings</div>
+            <div class="interests">Academic Interest: Interested in how we make inferences from evidence, and how these inferences affect our social world.</div>
+            <div class="qm-application">QM Application: Gathering a tool-kit of quantitative methods to study the social world, while also studying the methods themselves.</div>
+        </div>
+
+        <div class="team-member">
+            <img src="/api/placeholder/150/150" alt="Joe Larrodé" class="profile-img">
+            <h2>Joe Larrodé</h2>
+            <div class="role">Visualization</div>
+            <div class="interests">Academic Interest: Looking to increase research and available data pertaining to the trans community, focusing on policies and practices in sports.</div>
+            <div class="qm-application">QM Application: Utilizing a wide range of data analysis tools while engaging with existing literature.</div>
+        </div>
+
+        <div class="team-member">
+            <img src="/api/placeholder/150/150" alt="Alice (Yucheng) Pan" class="profile-img">
+            <h2>Alice (Yucheng) Pan</h2>
+            <div class="role">Website Content - Implications and Conclusion</div>
+            <div class="interests">Academic Interest: Using economic models to understand people's behaviors and decision-making in society.</div>
+            <div class="qm-application">QM Application: Developing skills to statistically analyze data and present findings through various visual methods.</div>
+        </div>
+
+        <div class="team-member">
+            <img src="/api/placeholder/150/150" alt="Joy Adams" class="profile-img">
+            <h2>Joy Adams</h2>
+            <div class="role">Literature Review, Background, Discussion and Limitations</div>
+            <div class="interests">Academic Interest: Studying how economic and social factors affect societal interactions, particularly in relation to the justice system.</div>
+            <div class="qm-application">QM Application: Developing technical and interpretative skills for understanding statistical research.</div>
+        </div>
+
+        <div class="team-member">
+            <img src="/api/placeholder/150/150" alt="Alice (Yi Hsun) Wang" class="profile-img">
+            <h2>Alice (Yi Hsun) Wang</h2>
+            <div class="role">Implications and Discussion</div>
+            <div class="interests">Academic Interest: Economics with focus in Data Analytics</div>
+            <div class="qm-application">QM Application: Gaining practical experience in visualizing and analyzing complex datasets.</div>
+        </div>
+
+        <div class="team-member">
+            <img src="/api/placeholder/150/150" alt="Wooz" class="profile-img">
+            <h2>Wooz</h2>
+            <div class="role">Website Development and Deployment</div>
+            <div class="interests">Academic Interest: Technical implementation and web development, focusing on creating accessible and well-structured digital platforms for research presentation.</div>
+            <div class="qm-application">QM Application: Applying technical skills to effectively present quantitative research findings through interactive web platforms and ensuring proper deployment of research materials.</div>
+        </div>
+    </div>
+</body>
+</html>
