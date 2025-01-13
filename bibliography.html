@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENERGY-SES: Bibliography</title>
+    <link rel="stylesheet" href="css/template.css">
+    <style>
+        .bibliography-content {
+            background: var(--section-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .reference-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .reference-item {
+            padding: 1rem;
+            margin: 0.75rem 0;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .reference-item:hover {
+            border-left-color: var(--accent-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .doi-link {
+            color: #2196f3;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .doi-link:hover {
+            text-decoration: underline;
+        }
+
+        .data-source {
+            border-left-color: #4caf50;
+        }
+
+        .journal-article {
+            border-left-color: #2196f3;
+        }
+
+        .gov-document {
+            border-left-color: #f44336;
+        }
+
+        .reference-type {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .author {
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .year {
+            color: #666;
+        }
+
+        .title {
+            font-style: italic;
+        }
+
+        .source {
+            font-weight: 500;
+        }
+
+        .access-date {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .filter-section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            border: 1px solid #dee2e6;
+        }
+
+        .filter-button.active {
+            background: var(--accent-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container hero">
+            <h1>ENERGY-SES</h1>
+            <p>Socioeconomic Patterns in London's Energy Consumption</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="introduction.html">Introduction</a></li>
+                <li><a href="literature.html">Literature Review</a></li>
+                <li><a href="methodology.html">Methodology</a></li>
+                <li><a href="visualization.html">Visualisation</a></li>
+                <li><a href="findings.html">Findings</a></li>
+                <li><a href="discussion.html">Discussion</a></li>
+                <li><a href="implications.html">Implications & Conclusions</a></li>
+                <li><a href="bibliography.html" class="active">Bibliography</a></li>
+                <li><a href="profiles.html">Our Profiles</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="bibliography-content">
+                <h2>Bibliography</h2>
+
+                <div class="filter-section">
+                    <h3>Filter References</h3>
+                    <div class="filter-buttons">
+                        <button class="filter-button active">All</button>
+                        <button class="filter-button">Journal Articles</button>
+                        <button class="filter-button">Data Sources</button>
+                        <button class="filter-button">Government Documents</button>
+                    </div>
+                </div>
+
+                <ul class="reference-list">
+                    <li class="reference-item journal-article">
+                        <div class="reference-type">Journal Article</div>
+                        <p><span class="author">Berthe, A. and Elie, L.</span> (<span class="year">2015</span>). '<span class="title">Mechanisms explaining the impact of economic inequality on environmental deterioration</span>'. <span class="source">Ecological Economics</span>, [online] 116(116), pp.191–200.</p>
+                        <a href="https://doi.org/10.1016/j.ecolecon.2015.04.026" class="doi-link">doi:10.1016/j.ecolecon.2015.04.026</a>
+                    </li>
+
+                    <li class="reference-item data-source">
+                        <div class="reference-type">Data Source</div>
+                        <p><span class="author">Department for Energy Security and Net Zero</span> (<span class="year">2024a</span>). '<span class="title">Domestic gas consumption distribution 2015 to 2023</span>' [Data set]. GOV.UK.</p>
+                        <a href="https://www.gov.uk/government/statistics/regional-and-local-authority-gas-consumption-statistics" class="doi-link">View Dataset</a>
+                    </li>
+
+                    <li class="reference-item gov-document">
+                        <div class="reference-type">Government Document</div>
+                        <p><span class="author">Great Britain. Office for National Statistics</span> (<span class="year">2023</span>). '<span class="title">How life has changed in the City of London: Census 2021</span>'.</p>
+                        <div class="access-date">Accessed: 11 January 2025</div>
+                    </li>
+
+                    <!-- Additional references follow the same pattern -->
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 ENERGY-SES Project • QM2 Group XX</p>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-button');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                // Add filtering logic here
+            });
+        });
+    </script>
+</body>
+</html>
