@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methodology: Model Development and Diagnostics</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --code-bg: #f8f9fa;
+            --border-color: #dee2e6;
+            --warning-color: #e74c3c;
+            --success-color: #2ecc71;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+            margin-top: 2em;
+            margin-bottom: 1em;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5em;
+        }
+
+        .model-section {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 2em 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .diagnostic-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin: 2em 0;
+        }
+
+        .diagnostic-plot {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .img-container {
+            margin: 1em 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .img-caption {
+            background: var(--code-bg);
+            padding: 15px;
+            font-style: italic;
+            color: var(--secondary-color);
+        }
+
+        .test-result {
+            background: var(--code-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 1em 0;
+            font-family: monospace;
+        }
+
+        .test-result.pass {
+            border-left: 4px solid var(--success-color);
+        }
+
+        .test-result.warning {
+            border-left: 4px solid var(--warning-color);
+        }
+
+        .vif-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1em 0;
+        }
+
+        .vif-table th, .vif-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        .vif-table th {
+            background: var(--code-bg);
+        }
+
+        .vif-value {
+            font-family: monospace;
+        }
+
+        .high-vif {
+            color: var(--warning-color);
+            font-weight: bold;
+        }
+
+        .model-code {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: monospace;
+            margin: 1em 0;
+        }
+
+        .model-results {
+            font-family: monospace;
+            white-space: pre-wrap;
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1em 0;
+        }
+
+        .assumption-check {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin: 1em 0;
+        }
+
+        .assumption-check h4 {
+            color: var(--accent-color);
+            border-bottom: none;
+        }
+
+        .note {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 1em;
+            margin: 1em 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Model Development and Diagnostics</h1>
+
+    <section class="model-section">
+        <h2>Model Assumptions</h2>
+        <div class="note">
+            <p>Our normal linear regression model requires four key assumptions:</p>
+            <ol>
+                <li>Linearity</li>
+                <li>Normality of the errors</li>
+                <li>Homoscedasticity of the errors</li>
+                <li>Independence of the errors</li>
+            </ol>
+        </div>
+
+        <h3>Initial Multicollinearity Assessment</h3>
+        <div class="assumption-check">
+            <h4>Variance Inflation Factors (VIF) - Before Centering</h4>
+            <table class="vif-table">
+                <tr>
+                    <th>Variable</th>
+                    <th>VIF</th>
+                </tr>
+                <tr>
+                    <td>Median income</td>
+                    <td class="vif-value high-vif">122.145741</td>
+                </tr>
+                <tr>
+                    <td>Mean people per household</td>
+                    <td class="vif-value high-vif">183.174208</td>
+                </tr>
+                <tr>
+                    <td>Estimated mean dwelling energy rating</td>
+                    <td class="vif-value high-vif">499.896117</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="note">
+            <strong>Note:</strong> VIF values > 5 indicate multicollinearity, values > 10 indicate serious multicollinearity.
+        </div>
+    </section>
+
+    <section class="model-section">
+        <h2>Addressing Multicollinearity</h2>
+        
+        <div class="model-code">
+            <h4>Mean Centering Variables</h4>
+            <pre>
+# Center variables
+df_without_CoL['Median_Income_Centered'] = df_without_CoL['Median income'] - df_without_CoL['Median income'].mean()
+df_without_CoL['Mean_People_Centered'] = df_without_CoL['mean people per household'] - df_without_CoL['mean people per household'].mean()</pre>
+        </div>
+
+        <div class="assumption-check">
+            <h4>VIF After Centering</h4>
+            <table class="vif-table">
+                <tr>
+                    <th>Variable</th>
+                    <th>VIF</th>
+                </tr>
+                <tr>
+                    <td>Median_Income_Centered</td>
+                    <td class="vif-value">3.483672</td>
+                </tr>
+                <tr>
+                    <td>Mean_People_Centered</td>
+                    <td class="vif-value">3.483667</td>
+                </tr>
+                <tr>
+                    <td>Estimated mean dwelling energy rating</td>
+                    <td class="vif-value">1.000004</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="model-section">
+        <h2>Final Model Specification</h2>
+        
+        <div class="model-code">
+            <pre>
+# Define the formula for the multiple linear regression model
+formula = '''Q("GAS Mean domestic consumption (kWh per meter)") ~ 
+    Median_Income_Centered + 
+    Mean_People_Centered + 
+    Q("estimated mean dwelling energy rating") + 
+    Median_Income_Centered*Mean_People_Centered + 
+    Q("estimated mean dwelling energy rating")*Median_Income_Centered'''
+
+model = smf.ols(formula=formula, data=df_without_CoL).fit()</pre>
+        </div>
+
+        <div class="model-results">
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:     GAS Mean domestic consumption (kWh per meter)   R-squared:           0.678
+Model:                                                    OLS      Adj. R-squared:      0.611
+No. Observations:                                         30       F-statistic:         10.11
+Df Residuals:                                            24       Prob(F-statistic):  2.65e-05
+Df Model:                                                 5       Log-Likelihood:    -247.47
+Covariance Type:                                  nonrobust       AIC:               506.9
+                                                                 BIC:               515.4
+==============================================================================</div>
+    </section>
+
+    <section class="model-section">
+        <h2>Model Diagnostics</h2>
+
+        <div class="diagnostic-container">
+            <div class="diagnostic-plot">
+                <h4>Normality of Residuals</h4>
+                <div class="img-container">
+                    <img src="/api/placeholder/500/400" alt="QQ Plot of Model Residuals">
+                    <div class="img-caption">Q-Q Plot of Model Residuals</div>
+                </div>
+                <div class="test-result pass">
+                    Shapiro-Wilk Test Results:<br>
+                    Statistic: 0.9697940327701915<br>
+                    P-value: 0.5335544834414148
+                </div>
+            </div>
+
+            <div class="diagnostic-plot">
+                <h4>Homoscedasticity</h4>
+                <div class="img-container">
+                    <img src="/api/placeholder/500/400" alt="Residuals vs Fitted Values">
+                    <div class="img-caption">Residuals vs Fitted Values Plot</div>
+                </div>
+                <div class="test-result pass">
+                    Breusch-Pagan Test Results:<br>
+                    Test Statistic: 3.291638255978037<br>
+                    P-value: 0.6551221026383567
+                </div>
+            </div>
+        </div>
+
+        <div class="assumption-check">
+            <h4>Summary of Assumption Tests</h4>
+            <ul>
+                <li><strong>Normality:</strong> Shapiro-Wilk test p-value > 0.05 indicates no evidence against normality</li>
+                <li><strong>Homoscedasticity:</strong> Breusch-Pagan test p-value > 0.05 indicates no evidence against homoscedasticity</li>
+                <li><strong>Independence:</strong> No systematic patterns in residuals plot</li>
+                <li><strong>Linearity:</strong> Confirmed through scatter plots and residual analysis</li>
+            </ul>
+        </div>
+    </section>
+
+</body>
+</html>
