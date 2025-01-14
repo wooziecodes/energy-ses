@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methodology: Model Interpretation and Findings</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --code-bg: #f8f9fa;
+            --border-color: #dee2e6;
+            --positive-color: #2ecc71;
+            --negative-color: #e74c3c;
+            --neutral-color: #f1c40f;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+            margin-top: 2em;
+            margin-bottom: 1em;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5em;
+        }
+
+        .findings-section {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 2em 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .model-summary {
+            font-family: monospace;
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .coefficient-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1em 0;
+        }
+
+        .coefficient-table th, .coefficient-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        .coefficient-table th {
+            background: var(--code-bg);
+            font-weight: 600;
+        }
+
+        .significance {
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .sig-high {
+            color: var(--positive-color);
+        }
+
+        .sig-med {
+            color: var(--neutral-color);
+        }
+
+        .sig-low {
+            color: var(--negative-color);
+        }
+
+        .interpretation-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 1em;
+            margin: 1em 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .effect-visualization {
+            margin: 2em 0;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .img-container {
+            margin: 1em 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .img-caption {
+            background: var(--code-bg);
+            padding: 15px;
+            font-style: italic;
+            color: var(--secondary-color);
+        }
+
+        .key-finding {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--positive-color);
+            margin: 1em 0;
+        }
+
+        .interaction-effect {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin: 1em 0;
+        }
+
+        .formula-box {
+            background: var(--code-bg);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 1em 0;
+            overflow-x: auto;
+        }
+
+        .practical-implications {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 2em 0;
+        }
+
+        .implication-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+    <h1>Model Interpretation and Findings</h1>
+
+    <section class="findings-section">
+        <h2>Final Model Results</h2>
+        
+        <div class="model-summary">
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:     GAS Mean domestic consumption (kWh per meter)   R-squared:           0.678
+Model:                                                    OLS      Adj. R-squared:      0.611
+No. Observations:                                         30       F-statistic:         10.11
+Df Residuals:                                            24       Prob(F-statistic):  2.65e-05
+Df Model:                                                 5       Log-Likelihood:    -247.47
+Covariance Type:                                  nonrobust       AIC:               506.9
+                                                                 BIC:               515.4
+==============================================================================
+                          coef    std err     t     P>|t|   [0.025   0.975]
+------------------------------------------------------------------------------
+Intercept               3.515e+04  5477.566   6.417   0.000   2.38e+04  4.65e+04
+Median_Income_Centered      6.720    2.745   2.745   0.011      3.619    10.451
+Mean_People_Centered    6857.999  1091.915   6.281   0.000   5596.746  8119.595
+Energy Rating            -333.5327   79.565  -4.192   0.000   -497.746  -169.319
+Income:People              0.7461    0.246   3.078   0.005     0.246     1.250
+Income:Energy Rating      -0.0941    0.026  -3.569   0.002    -0.149    -0.040
+==============================================================================</div>
+
+        <div class="interpretation-box">
+            <strong>Model Fit:</strong>
+            <ul>
+                <li>R-squared: 0.678 (67.8% of variance explained)</li>
+                <li>Adjusted R-squared: 0.611</li>
+                <li>F-statistic: 10.11 (p < 0.001)</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="findings-section">
+        <h2>Coefficient Interpretation</h2>
+        
+        <table class="coefficient-table">
+            <tr>
+                <th>Variable</th>
+                <th>Coefficient</th>
+                <th>P-Value</th>
+                <th>Interpretation</th>
+            </tr>
+            <tr>
+                <td>Intercept</td>
+                <td>35,150</td>
+                <td><span class="significance sig-high">< 0.001</span></td>
+                <td>Base gas consumption (kWh/meter) when all predictors are at their means</td>
+            </tr>
+            <tr>
+                <td>Median Income (Centered)</td>
+                <td>6.720</td>
+                <td><span class="significance sig-high">0.011</span></td>
+                <td>For each £1 increase in median income above the mean, gas consumption increases by 6.72 kWh/meter (when other variables are at their means)</td>
+            </tr>
+            <tr>
+                <td>Mean People per Household (Centered)</td>
+                <td>6,858</td>
+                <td><span class="significance sig-high">< 0.001</span></td>
+                <td>For each additional person per household above the mean, gas consumption increases by 6,858 kWh/meter</td>
+            </tr>
+            <tr>
+                <td>Energy Rating</td>
+                <td>-333.53</td>
+                <td><span class="significance sig-high">< 0.001</span></td>
+                <td>For each point increase in energy efficiency rating, gas consumption decreases by 333.53 kWh/meter</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="findings-section">
+        <h2>Interaction Effects</h2>
+        
+        <div class="interaction-effect">
+            <h4>Income × Household Size Interaction</h4>
+            <div class="formula-box">
+                Coefficient: 0.7461 (p = 0.005)
+            </div>
+            <p>The effect of income on gas consumption is stronger in boroughs with larger household sizes. For each additional person per household, the effect of a £1 increase in income on gas consumption increases by 0.7461 kWh/meter.</p>
+            
+            <div class="img-container">
+                <img src="/api/placeholder/800/400" alt="Income × Household Size Interaction Plot">
+                <div class="img-caption">Visualization of how the relationship between income and gas consumption varies with household size</div>
+            </div>
+        </div>
+
+        <div class="interaction-effect">
+            <h4>Income × Energy Rating Interaction</h4>
+            <div class="formula-box">
+                Coefficient: -0.0941 (p = 0.002)
+            </div>
+            <p>The effect of income on gas consumption is weaker in boroughs with higher energy efficiency ratings. For each point increase in energy rating, the effect of a £1 increase in income on gas consumption decreases by 0.0941 kWh/meter.</p>
+            
+            <div class="img-container">
+                <img src="/api/placeholder/800/400" alt="Income × Energy Rating Interaction Plot">
+                <div class="img-caption">Visualization of how the relationship between income and gas consumption varies with energy efficiency rating</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="findings-section">
+        <h2>Practical Implications</h2>
+        
+        <div class="practical-implications">
+            <div class="implication-card">
+                <h4>Income Effects</h4>
+                <p>Higher income boroughs show increased gas consumption, but this effect is moderated by both household size and energy efficiency. This suggests that energy efficiency improvements could help mitigate income-related increases in consumption.</p>
+            </div>
+            
+            <div class="implication-card">
+                <h4>Energy Efficiency Impact</h4>
+                <p>The strong negative coefficient for energy ratings (-333.53) indicates that improvements in energy efficiency could substantially reduce gas consumption, particularly in higher-income areas.</p>
+            </div>
+            
+            <div class="implication-card">
+                <h4>Household Size Considerations</h4>
+                <p>The large positive coefficient for household size (6,858) suggests that policies targeting household energy efficiency might be particularly important in areas with larger average household sizes.</p>
+            </div>
+        </div>
+
+        <div class="key-finding">
+            <h4>Key Takeaway</h4>
+            <p>While higher income is associated with increased gas consumption, this relationship is significantly moderated by both household size and energy efficiency. This suggests that energy efficiency improvements could be an effective way to reduce consumption, particularly in higher-income areas with larger households.</p>
+        </div>
+    </section>
+
+</body>
+</html>
