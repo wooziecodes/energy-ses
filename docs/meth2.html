@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methodology: Exploratory Data Analysis</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --code-bg: #f8f9fa;
+            --border-color: #dee2e6;
+            --table-stripe: #f8f9fa;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+            margin-top: 2em;
+            margin-bottom: 1em;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5em;
+        }
+
+        .visualization-section {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 2em 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .img-container {
+            margin: 2em 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .img-caption {
+            background: var(--code-bg);
+            padding: 15px;
+            font-style: italic;
+            color: var(--secondary-color);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2em 0;
+            background: white;
+        }
+
+        .stats-table th, .stats-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        .stats-table th {
+            background: var(--code-bg);
+            font-weight: 600;
+        }
+
+        .stats-table tr:nth-child(even) {
+            background: var(--table-stripe);
+        }
+
+        .analysis-note {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 1em;
+            margin: 1em 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .stat-result {
+            background: var(--code-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 1em 0;
+            font-family: monospace;
+        }
+
+        .distribution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 2em 0;
+        }
+
+        .transformation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 2em 0;
+        }
+
+        @media (max-width: 768px) {
+            .transformation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Exploratory Data Analysis</h1>
+
+    <section class="visualization-section">
+        <h2>Initial Data Distributions</h2>
+        
+        <div class="analysis-note">
+            <strong>Note:</strong> Summary statistics and distributions were examined before any transformations or removal of outliers.
+        </div>
+
+        <h3>Summary Statistics</h3>
+        <table class="stats-table">
+            <tr>
+                <th>Variable</th>
+                <th>Mean</th>
+                <th>Std Dev</th>
+                <th>Min</th>
+                <th>25%</th>
+                <th>50%</th>
+                <th>75%</th>
+                <th>Max</th>
+            </tr>
+            <tr>
+                <td>Median Income (£)</td>
+                <td>33,353.30</td>
+                <td>4,012.29</td>
+                <td>28,000</td>
+                <td>30,450</td>
+                <td>32,150</td>
+                <td>35,250</td>
+                <td>43,900</td>
+            </tr>
+            <tr>
+                <td>Household size (mean)</td>
+                <td>2.51</td>
+                <td>0.24</td>
+                <td>2.09</td>
+                <td>2.36</td>
+                <td>2.53</td>
+                <td>2.68</td>
+                <td>2.91</td>
+            </tr>
+            <tr>
+                <td>Energy ratings (mean)</td>
+                <td>68.31</td>
+                <td>2.47</td>
+                <td>65.27</td>
+                <td>66.44</td>
+                <td>67.89</td>
+                <td>69.86</td>
+                <td>74.54</td>
+            </tr>
+            <tr>
+                <td>Gas Consumption (kWh/m)</td>
+                <td>11,752.80</td>
+                <td>1,658.88</td>
+                <td>8,365.30</td>
+                <td>10,655</td>
+                <td>11,815.10</td>
+                <td>12,788.60</td>
+                <td>15,305.60</td>
+            </tr>
+        </table>
+
+        <div class="distribution-grid">
+            <div class="img-container">
+                <img src="/api/placeholder/500/400" alt="Distribution of mean people per household">
+                <div class="img-caption">Distribution of estimated mean people per household in London boroughs</div>
+            </div>
+            <div class="img-container">
+                <img src="/api/placeholder/500/400" alt="Distribution of energy efficiency ratings">
+                <div class="img-caption">Distribution of estimated mean dwelling energy efficiency rating</div>
+            </div>
+            <div class="img-container">
+                <img src="/api/placeholder/500/400" alt="Distribution of median income">
+                <div class="img-caption">Distribution of median income of taxpayers</div>
+            </div>
+            <div class="img-container">
+                <img src="/api/placeholder/500/400" alt="Distribution of gas consumption">
+                <div class="img-caption">Distribution of mean domestic gas consumption</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="visualization-section">
+        <h2>City of London Analysis</h2>
+        
+        <div class="analysis-note">
+            <strong>Outlier Identification:</strong> The City of London was identified as a significant outlier due to its unique characteristics:
+            <ul>
+                <li>Extremely small population (8,600 people in 2021 Census)</li>
+                <li>Significantly higher median income (£62,200)</li>
+                <li>Smallest mean household size</li>
+            </ul>
+        </div>
+
+        <div class="img-container">
+            <img src="/api/placeholder/800/400" alt="Boxplots showing City of London as outlier">
+            <div class="img-caption">Boxplots highlighting the City of London's outlier status across key variables</div>
+        </div>
+    </section>
+
+    <section class="visualization-section">
+        <h2>Electricity Consumption Analysis</h2>
+        
+        <h3>Distribution Investigation</h3>
+        <div class="transformation-grid">
+            <div class="img-container">
+                <img src="/api/placeholder/500/400" alt="Original electricity consumption distribution">
+                <div class="img-caption">Original electricity consumption distribution showing bimodality</div>
+            </div>
+            
+            <div class="img-container">
+                <img src="/api/placeholder/500/400" alt="Grid of transformation attempts">
+                <div class="img-caption">Attempted transformations: Square Root, Log, and Box-Cox</div>
+            </div>
+        </div>
+
+        <div class="analysis-note">
+            <strong>Transformation Results:</strong> None of the attempted transformations (Square Root, Log, Box-Cox) successfully addressed the bimodal distribution of electricity consumption data.
+        </div>
+
+        <h3>Normality Testing</h3>
+        <div class="stat-result">
+            <strong>Shapiro-Wilk Test for Normality on Transformed Data:</strong><br>
+            Statistic: 0.9697940327701915<br>
+            P-value: 0.5335544834414148
+        </div>
+    </section>
+
+    <section class="visualization-section">
+        <h2>Variable Relationships</h2>
+        
+        <div class="img-container">
+            <img src="/api/placeholder/800/800" alt="Correlation matrix plot">
+            <div class="img-caption">Matrix plot showing relationships between gas consumption, income, household size, and energy efficiency</div>
+        </div>
+
+        <div class="analysis-note">
+            <strong>Key Findings:</strong>
+            <ul>
+                <li>Strong negative correlation (r = -0.84) between mean people per household and median income</li>
+                <li>Negative linear relationship between energy efficiency ratings and gas consumption</li>
+                <li>Positive linear relationships between gas consumption and both median income and mean people per household</li>
+            </ul>
+        </div>
+    </section>
+
+</body>
+</html>
