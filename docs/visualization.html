@@ -224,7 +224,7 @@
                     <p>The scatterplot matrix below shows the relationships between key variables in our study:</p>
                     
                     <div class="viz-container">
-                        <img src="./img1.jpg" alt="Scatterplot Matrix">
+                        <img src="assets/meth_imgs/image2.png" alt="Scatterplot Matrix">
                         <div class="viz-caption">
                             Figure 1: Scatterplot matrix showing relationships between gas consumption, income, household size, and energy efficiency ratings
                         </div>
@@ -291,10 +291,10 @@
                 
                     <div class="viz-container">
                         <div class="map-view labeled active">
-                            <img src="./map2.jpg" alt="London Borough Gas Consumption Map with Labels">
+                            <img src="assets/map2.jpg" alt="London Borough Gas Consumption Map with Labels">
                         </div>
                         <div class="map-view unlabeled">
-                            <img src="./map.jpg" alt="London Borough Gas Consumption Map without Labels">
+                            <img src="assets/map.jpg" alt="London Borough Gas Consumption Map without Labels">
                         </div>
                         
                         <div class="viz-caption">
@@ -372,7 +372,7 @@
 
 
 <div class="viz-container">
-                        <img src="map2.jpg" alt= "London Borough Gas Consumption Map">
+                        <img src="assets/map2.  " alt= "London Borough Gas Consumption Map">
                         <div class="viz-caption">
                             Figure 2: Gas consumption patterns across London boroughs
                         </div>
@@ -413,17 +413,8 @@
     </footer>
 
     <script>
-        // Toggle map view
-        const mapButtons = document.querySelectorAll('.map-toggle button');
-        mapButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                mapButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                // Add logic to switch map views
-            });
-        });
-
-        const mapButtons = document.querySelectorAll('.map-toggle button');
+    // Single declaration of map toggle functionality
+    const mapButtons = document.querySelectorAll('.map-toggle button');
     const mapViews = document.querySelectorAll('.map-view');
 
     mapButtons.forEach(button => {
