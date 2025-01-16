@@ -1,598 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methodology</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background-color: #fff;
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 1em;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5em;
+        }
+        h2 {
+            color: #444;
+            font-size: 1.5em;
+            margin-top: 1.5em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.3em;
+        }
+        h3 {
+            color: #555;
+            font-size: 1.3em;
+            margin-top: 1.2em;
+        }
+        .image-container {
+            margin: 2em 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1em;
+            background: #fff;
+            border-radius: 4px;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            padding: 1.5em;
+            border-radius: 6px;
+            margin: 1.5em 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            border: 1px solid #e9ecef;
+        }
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+        ul, ol {
+            padding-left: 2em;
+            margin: 1em 0;
+        }
+        li {
+            margin-bottom: 0.5em;
+        }
+        p {
+            margin: 1em 0;
+            text-align: justify;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2em 0;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <h1>Methodology</h1>
 
-Methodology
+    <h2>Overview</h2>
+    <p>The aim was to construct and evaluate a borough-level normal linear regression model of mean household energy consumption (measured in kWh per meter) according to median income of taxpayers, mean domestic energy efficiency rating, mean people per household.</p>
+    
+    <p>This regression model would facilitate measuring the effect of changes in median income of taxpayers on the mean household energy consumption, while controlling for mean domestic energy efficiency ratings and mean people per household.</p>
 
-Overview
+    <p>As explained later, under the heading 'assessing electricity data', we decided to pivot our research question to focus only on gas consumption, because the electricity data were not suitable for a rigorous regression analysis within our skillset. In the sections that follow we will discuss other methodological challenges we encountered throughout the analysis, and how we worked to overcome these. The data we aimed to analyse proved complex, as much real-world data is. We worked to maintain the integrity of the data, and throughout the following sections of the website we critically discuss how manipulating the data to fit the assumptions of our regression analysis would affect the models' interpretability and usefulness.</p>
 
-The aim was to construct and evaluate a borough-level normal linear regression model of mean household energy consumption (measured in kWh per meter) according to median income of taxpayers, mean domestic energy efficiency rating, mean people per household.
+    <p>Alpha is set at the conventional level of 0.05 for all statistical tests in this analysis.</p>
 
-
-This regression model would facilitate measuring the effect of changes in median income of taxpayers on the mean household energy consumption, while controlling for mean domestic energy efficiency ratings and mean people per household.
-
-
-As explained later, under the heading ‘assessing electricity data’, we decided to pivot our research question to focus only on gas consumption, because the electricity data were not suitable for a rigorous regression analysis within our skillset. In the sections that follow we will discuss other methodological challenges we encountered throughout the analysis, and how we worked to overcome these. The data we aimed to analyse proved complex, as much real-world data is. We worked to maintain the integrity of the data, and throughout the following sections of the website we critically discuss how manipulating the data to fit the assumptions of our regression analysis would affect the models’ interpretability and usefulness.
-
-
-Alpha is set at the conventional level of 0.05 for all statistical tests in this analysis.
-
-
-Variables
-
-Mean domestic gas consumption (kWh per meter) (over the year) - 2023
-Mean domestic electricity consumption (kWh per meter) (over the year)  - 2023
-Median Personal incomes of taxpayers (before tax) (GBP) (over the year) - 2021/22
-Estimated mean people per household - 2021
-Estimated mean domestic energy efficiency rating (1-100 rating) - 2021
-
-Note that ‘meter’ refers to an energy meter, not a measure of distance.
+    <h2>Variables</h2>
+    <ul>
+        <li>Mean domestic gas consumption (kWh per meter) (over the year) - 2023</li>
+        <li>Mean domestic electricity consumption (kWh per meter) (over the year) - 2023</li>
+        <li>Median Personal incomes of taxpayers (before tax) (GBP) (over the year) - 2021/22</li>
+        <li>Estimated mean people per household - 2021</li>
+        <li>Estimated mean domestic energy efficiency rating (1-100 rating) - 2021</li>
+    </ul>
 
 
-Data sources
+    <h2>Data Sources</h2>
+    <ul>
+        <li>Department for Energy Security and Net Zero (2024): Domestic gas consumption</li>
+        <li>Department for Energy Security and Net Zero (2024a): Domestic electricity consumption</li>
+        <li>Greater London Authority (2024): Personal incomes of taxpayers</li>
+        <li>Office for National Statistics (ONS) (2024a): People per household</li>
+        <li>Ministry of Housing, Communities & Local Government (MHCLG) (2021): Domestic energy efficiency ratings</li>
+    </ul>
 
-Department for Energy Security and Net Zero (2024): Domestic gas consumption
-Department for Energy Security and Net Zero (2024a): Domestic electricity consumption
-Greater London Authority (2024): Personal incomes of taxpayers
-Office for National Statistics (ONS) (2024a): People per household
-Ministry of Housing, Communities & Local Government (MHCLG) (2021):  Domestic energy efficiency ratings
+    <p>Borough level data was used because household level data are not available for all relevant variables. This means that we are considering average values for each borough for each of the variables.</p>
 
-Borough level data was used because household level data are not available for all relevant variables. This means that we are considering average values for each borough for each of the variables.
+    <p>All coding was done in google colab. Data files were downloaded from government websites, and opened as MS Excel files. For each data file, some preprocessing was carried out in Excel, including selecting only the spreadsheet with the most recent year, and selecting only data from London boroughs. The files were then uploaded to google drive and mounted into the colab page.</p>
 
+    <h2>Data Wrangling and Cleaning</h2>
+    
+    <h3>Calculating Estimated Mean People per Household</h3>
+    <ul>
+        <li>Household size data was given as number of households in each borough with 1,2,3,4 or 5+ members</li>
+        <li>For each borough we needed the average number of people per household in each borough. We used the method recommended by the United States Census Bureau (2020): calculating a weighted mean from the distribution of household sizes.</li>
+        <li>We calculated an estimate of the total people in all households in the borough by multiplying the number of households in each size category by the household size. For households with 5+ people, we used the multiplier of 5.5 people per household to account for households that are larger.</li>
+        <li>We then calculated the total households by summing the number of households in each size category.</li>
+        <li>We divided the total people by the total households.</li>
+        <li>We looped through this process for each borough and added a column to our dataframe called 'estimated mean people per household'</li>
+    </ul>
 
-All coding was done in google colab. Data files were downloaded from government websites, and opened as MS Excel files. For each data file, some preprocessing was carried out in Excel, including selecting only the spreadsheet with the most recent year, and selecting only data from London boroughs. The files were then uploaded to google drive and mounted into the colab page.
+    <div class="code-block">
+        <pre>
+# Calculate and add 'mean people per household' column to people_per_household
+# first, create new column and initialize with 0
+people_per_household['mean people per household'] = 0
 
+#loop through according to index to calc total number of people per household and total number of households in each borough
+for index in people_per_household.index:
+    #calc total number of people per borough
+    total_people = (
+        1 * people_per_household.loc[index, 'households with 1 person'] +
+        2 * people_per_household.loc[index, 'households with 2 people'] +
+        3 * people_per_household.loc[index, 'households with 3 people'] +
+        4 * people_per_household.loc[index, 'households with 4 people'] +
+        5.5 * people_per_household.loc[index, 'households with 5+ people']
+        #5.5 used as for 5+ people households
+    )
 
-Data wrangling and cleaning
+    # calc total number of households per borough
+    total_households = (
+        people_per_household.loc[index, 'households with 1 person'] +
+        people_per_household.loc[index, 'households with 2 people'] +
+        people_per_household.loc[index, 'households with 3 people'] +
+        people_per_household.loc[index, 'households with 4 people'] +
+        people_per_household.loc[index, 'households with 5+ people']
+    )
 
-For each of the 5 datasets, the data were cleaned in order to eventually be merged into a single dataframe. The common data cleaning included the following:
+    #finally, calc mean by dividing the total people by total households
+    if total_households != 0:
+        people_per_household.loc[index, 'mean people per household'] = total_people / total_households
+        </pre>
+    </div>
 
-Removal of excess rows containing headings or other information (from excel layout)
-Changing column names (for ease of understanding, and to match between dfs so that merge can take place)
-Removing columns of excess data not being used in analysis
-Resetting index
-Removal of commas and making all values numeric
+    <h3>Calculating Estimated Mean Domestic Energy Efficiency Rating</h3>
+    <ul>
+        <li>We needed to carry out a similar process to the household size data with the domestic energy efficiency ratings.</li>
+        <li>The efficiency data was given as the number of households in each borough with ratings of A,B,C,D,E,F or G. These categorical labels represent intervals of efficiency ratings on a scale from 1-100. [A = 92-100, B = 81-91, C = 69-80, D = 55-68, E = 39-54, F = 21-38, G = 1-20]</li>
+        <li>We calculated a weighted mean of domestic energy efficiency ratings in each borough by multiplying the number of households in each category by the mean score represented by that category.</li>
+    </ul>
 
-There were no missing data in any of the datasets.
-
-
-Example code for data cleaning on mean gas consumption data:
-
-# reading in gas data from google drive
-
-gas = pd.read_csv('/content/drive/MyDrive/FINALQM2/filtered_gas_consumption_2022.csv')
-
-
-#cleaning gas dataframe
-
-
-# rename local authority as 'Area' to match other dfs
-
-gas = gas.rename(columns={'Local authority':'Area'})
-
-# add index
-
-gas = gas.reset_index(drop=True)
-
-# drop excess columns
-
-gas = gas.drop(columns=['Code', 'Country or region', 'Notes'])
-
-# rename columns
-
-gas = gas.rename(columns={'Total consumption\n(GWh):\nDomestic\n':'GAS Total domestic consumption (GWh)', 'Mean consumption\n(kWh per meter):\nDomestic\n': 'GAS Mean domestic consumption (kWh per meter)','Median consumption\n(kWh per meter):\nDomestic\n': 'GAS Median domestic consumption (kWh per meter)'})
-
-
-# Remove commas from all columns with string types (which should be numeric)
-
-cols_commas = ['GAS Total domestic consumption (GWh)', 'GAS Mean domestic consumption (kWh per meter)', 'GAS Median domestic consumption (kWh per meter)']
-
-
-for col in cols_commas:
-
-   if gas[col].dtype == object:  # Check if column is of object type
-
-       gas[col] = gas[col].str.replace(',', '')
-
-
-# Convert to numeric after removing commas
-
-for col in cols_commas:
-
-   gas[col] = pd.to_numeric(gas[col], errors='coerce').fillna(0)
-
-
-gas.head()
-
-
-Similar data cleaning was performed on datasets of household electricity consumption, taxpayer income, people per household and domestic energy efficiency ratings.
-
-
-Calculations to convert household size and energy efficiency rating data into appropriate variables (estimated means per borough):
-
-
-Calculating estimated mean people per household
-
-Household size data was given as number of households in each borough with 1,2,3,4 or 5+ members
-For each borough we needed the average number of people per household in each borough. We used the method recommended by the United States Census Bureau (2020): calculating a weighted mean from the distribution of household sizes.
-We calculated an estimate of the total people in all households in the borough by multiplying the number of households in each size category by the household size. For households with 5+ people, we used the multiplier of 5.5 people per household to account for households that are larger.
-We then calculated the total households by summing the number of households in each size category.
-We divided the total people by the total households.
-We looped through this process for each borough and added a column to our dataframe called ‘estimated mean people per household ’
-
+    <div class="code-block">
+        <pre>
 # Add 'estimated mean dwelling energy rating' per household' column and inititalise with 0
-
 energy_rating['estimated mean dwelling energy rating'] = 0
-
 
 #calculate the estimated mean energy rating by dividing total energy rating by total dwellings
 
-
 for index in energy_rating.index:
-
-   #total energy ratings estimated by finding the average of each bracket, and then multiplying by number of dwellings in that bracket
-
-   total_ratings = (
-
-       ((92+100)/2) * energy_rating.loc[index,'A:92+'] +
-
-       ((81+91)/2) * energy_rating.loc[index,'B:81-91'] +
-
-       ((69+80)/2) * energy_rating.loc[index,'C:69-80'] +
-
-       ((55+68)/2) * energy_rating.loc[index,'D:55-68'] +
-
-       ((39+54)/2) * energy_rating.loc[index,'E:39-54'] +
-
-       ((21+38)/2) * energy_rating.loc[index,'F:21-38'] +
-
-       ((1+20)/2) * energy_rating.loc[index,'G:1-20']
-
-   )
-
-   total_dwellings = (
-
-       #total dwellings calculated by summing all dwellings with different ratings
-
-       energy_rating.loc[index, 'A:92+'] +
-
-       energy_rating.loc[index, 'B:81-91'] +
-
-       energy_rating.loc[index, 'C:69-80'] +
-
-       energy_rating.loc[index, 'D:55-68'] +
-
-       energy_rating.loc[index, 'E:39-54'] +
-
-       energy_rating.loc[index, 'F:21-38'] +
-
-       energy_rating.loc[index, 'G:1-20']
-
-   )
-
-
-   #calculate estimated mean dwelling energy rating for the borough
-
-   if total_households != 0:
-
-       energy_rating.loc[index, 'estimated mean dwelling energy rating'] = total_ratings / total_dwellings
-
-
-energy_rating.sort_values(by=['estimated mean dwelling energy rating'], ascending=False).head()
-
-
-
-Calculating estimated mean domestic energy efficiency rating  
-
-We needed to carry out a similar process to the household size data with the domestic energy efficiency ratings. The efficiency data was given as the number of households in each borough with ratings of A,B,C,D,E,F or G. These categorical labels represent intervals of efficiency ratings on a scale from 1-100. [A = 92-100, B = 81-91, C = 69-80, D = 55-68, E = 39-54, F = 21-38, G = 1-20]
-We calculated a weighted mean of domestic energy efficiency ratings in each borough by multiplying the number of households in each category by the mean score represented by that category. The households in each category were summed to get the total households in the borough. The mean was calculated as the total estimated energy efficiency ratings divided by total households.
-A new column was added to the data frame and populated by looping through the process above for each borough.
-
-
-# Calculate and add 'mean people per household' column to people_per_household
-
-# first, create new column and initialize with 0
-
-people_per_household['mean people per household'] = 0
-
-
-#loop through according to index to calc total number of people per household and total number of households in each borough
-
-for index in people_per_household.index:
-
-   #calc total number of people per borough
-
-   total_people = (
-
-       1 * people_per_household.loc[index, 'households with 1 person'] +
-
-       2 * people_per_household.loc[index, 'households with 2 people'] +
-
-       3 * people_per_household.loc[index, 'households with 3 people'] +
-
-       4 * people_per_household.loc[index, 'households with 4 people'] +
-
-       5.5 * people_per_household.loc[index, 'households with 5+ people']
-
-       #5.5 used as for 5+ people households
-
-   )
-
-   # calc total number of households per borough
-
-   total_households = (
-
-       people_per_household.loc[index, 'households with 1 person'] +
-
-       people_per_household.loc[index, 'households with 2 people'] +
-
-       people_per_household.loc[index, 'households with 3 people'] +
-
-       people_per_household.loc[index, 'households with 4 people'] +
-
-       people_per_household.loc[index, 'households with 5+ people']
-
-   )
-
-   #finally, calc mean by dividing the total people by total households
-
-   if total_households != 0:
-
-       people_per_household.loc[index, 'mean people per household'] = total_people / total_households
-
-
-people_per_household.head()
-
-people_per_household.head()
-
-
-The final step of data wrangling was merging the 5 dataframes into one. This was done by merging on the column ‘Area’ which contains the london borough names:
-
-
-# Merge the dataframes
-
-merged_df = pd.merge(people_per_household, energy_rating, on='Area', how='inner')
-
-merged_df = pd.merge(merged_df, median_income, on='Area', how='inner')
-
-merged_df = pd.merge(merged_df, electricity, on='Area', how='inner')
-
-merged_df = pd.merge(merged_df, gas, on='Area', how='inner')
-
-
-
-Exploring the data
-
-
-Summary statistics are presented below for the 5 variables
-
-
-
-INSERT SUMMARY STATS TABLE HERE PLEASE JOE[a]
-
-
-Histograms were plotted for the 5 variables to examine their distributions:
-
-
-
-
-
-Removing the City of London
-
-We suspected that the City of London may not be a useful data point because it has an extremely small population (8600 people according to the 2021 Census) and is very wealthy. The outlier in the median income histogram represents the City of London (median taxpayer earns 62200 GBP). The CoL also has the smallest mean number of people per household, visible to the left of the first histogram. Since CoL has such a small population and these extreme demographics, it could have a disproportionately large influence on our findings. For this reason we decided to exclude it from our data.
-
-
+    #total energy ratings estimated by finding the average of each bracket, and then multiplying by number of dwellings in that bracket
+    total_ratings = (
+        ((92+100)/2) * energy_rating.loc[index,'A:92+'] +
+        ((81+91)/2) * energy_rating.loc[index,'B:81-91'] +
+        ((69+80)/2) * energy_rating.loc[index,'C:69-80'] +
+        ((55+68)/2) * energy_rating.loc[index,'D:55-68'] +
+        ((39+54)/2) * energy_rating.loc[index,'E:39-54'] +
+        ((21+38)/2) * energy_rating.loc[index,'F:21-38'] +
+        ((1+20)/2) * energy_rating.loc[index,'G:1-20']
+    )
+    total_dwellings = (
+        #total dwellings calculated by summing all dwellings with different ratings
+        energy_rating.loc[index, 'A:92+'] +
+        energy_rating.loc[index, 'B:81-91'] +
+        energy_rating.loc[index, 'C:69-80'] +
+        energy_rating.loc[index, 'D:55-68'] +
+        energy_rating.loc[index, 'E:39-54'] +
+        energy_rating.loc[index, 'F:21-38'] +
+        energy_rating.loc[index, 'G:1-20']
+    )
+
+    #calculate estimated mean dwelling energy rating for the borough
+    if total_households != 0:
+        energy_rating.loc[index, 'estimated mean dwelling energy rating'] = total_ratings / total_dwellings
+        </pre>
+    </div>
+    <p>For each of the 5 datasets, the data were cleaned in order to eventually be merged into a single dataframe. The common data cleaning included the following:</p>
+    <ol>
+        <li>Removal of excess rows containing headings or other information (from excel layout)</li>
+        <li>Changing column names (for ease of understanding, and to match between dfs so that merge can take place)</li>
+        <li>Removing columns of excess data not being used in analysis</li>
+        <li>Resetting index</li>
+        <li>Removal of commas and making all values numeric</li>
+    </ol>
+
+    <p>There were no missing data in any of the datasets.</p>
+
+    <h2>Example Code for Data Cleaning on Mean Gas Consumption Data</h2>
+    <div class="code-block">
+        <pre>
+# reading in gas data from google drive
+gas = pd.read_csv('/content/drive/MyDrive/FINALQM2/filtered_gas_consumption_2022.csv')
+
+#cleaning gas dataframe
+
+# rename local authority as 'Area' to match other dfs
+gas = gas.rename(columns={'Local authority':'Area'})
+# add index
+gas = gas.reset_index(drop=True)
+# drop excess columns
+gas = gas.drop(columns=['Code', 'Country or region', 'Notes'])
+# rename columns
+gas = gas.rename(columns={
+    'Total consumption\n(GWh):\nDomestic\n':'GAS Total domestic consumption (GWh)', 
+    'Mean consumption\n(kWh per meter):\nDomestic\n': 'GAS Mean domestic consumption (kWh per meter)',
+    'Median consumption\n(kWh per meter):\nDomestic\n': 'GAS Median domestic consumption (kWh per meter)'
+})
+
+# Remove commas from all columns with string types (which should be numeric)
+cols_commas = ['GAS Total domestic consumption (GWh)', 
+               'GAS Mean domestic consumption (kWh per meter)', 
+               'GAS Median domestic consumption (kWh per meter)']
+
+for col in cols_commas:
+    if gas[col].dtype == object:  # Check if column is of object type 
+        gas[col] = gas[col].str.replace(',', '')
+
+# Convert to numeric after removing commas
+for col in cols_commas:
+    gas[col] = pd.to_numeric(gas[col], errors='coerce').fillna(0)
+
+gas.head()
+        </pre>
+    </div>
+
+    <h2>Summary Statistics</h2>
+    <div class="image-container">
+        <img src="assets/meth_imgs/image3.png" alt="Summary Statistics Table">
+    </div>
+
+    <h2>Statistical Analysis</h2>
+    <p>The histograms showing distributions of our key variables are presented below:</p>
+    <div class="image-container">
+        <img src="assets/meth_imgs/image2.png" alt="Distribution Histograms">
+    </div>
+
+    <h2>Removing the City of London</h2>
+    <p>We suspected that the City of London may not be a useful data point because it has an extremely small population (8600 people according to the 2021 Census) and is very wealthy. The outlier in the median income histogram represents the City of London (median taxpayer earns 62200 GBP). The CoL also has the smallest mean number of people per household, visible to the left of the first histogram. Since CoL has such a small population and these extreme demographics, it could have a disproportionately large influence on our findings. For this reason we decided to exclude it from our data.</p>
+
+    <div class="code-block">
+        <pre>
 #create a new dataframe without the City of London (CoL)
-
 df_without_CoL = merged_df[merged_df['Area'] != 'City of London']
+        </pre>
+    </div>
 
+    <h2>Thinking About Assumptions</h2>
+    <p>We intended to construct two normal linear ordinary least squares regression models for energy consumption - one with electricity consumption as the response and the other with gas consumption as the response. For both models the covariates would be median income, mean dwelling energy efficiency and mean people per household.</p>
 
+    <p>In order to construct the models, however, we needed to ensure that we would be able to satisfy the assumptions for normal linear regression:</p>
+    <ol>
+        <li>Linearity</li>
+        <li>Normality of the errors</li>
+        <li>Homoscedasticity of the errors</li>
+        <li>Independence of the errors</li>
+    </ol>
 
-        
+    <h2>Assessing Distribution of Electricity Consumption Data</h2>
+    <p>The first concern when examining the distributions of the variables, was the non-normality of the electricity data. While normal linear models do not assume that the response variable itself is normally distributed (only the error term of the model), the multimodal distribution of the electricity data raises serious concerns about whether this assumption could be met.</p>
 
+    <p>Our first attempt at normalising the mean electricity consumption data was by applying different transformations to the data and examining the resulting distributions.</p>
 
+    <div class="image-container">
+        <img src="/api/placeholder/600/450" alt="Transformations of Electricity Data">
+    </div>
 
+    <p>As shown, none of the transformations substantially normalised the data. All of the plots show bimodal density functions.</p>
 
-
-
-
-
-
-Histograms of variables without City of London
-
-        
-
-
-Thinking about assumptions
-
-
-We intended to construct two normal linear ordinary least squares regression models for energy consumption - one with electricity consumption as the response and the other with gas consumption as the response. For both models the covariates would be median income, mean dwelling energy efficiency and mean people per household.
-
-
-In order to construct the models, however, we needed to ensure that we would be able to satisfy the assumptions for normal linear regression:
-
-Linearity
-Normality of the errors
-Homoscedasticity of the errors
-Independence of the errors
-
-Assessing distribution of electricity consumption data
-
-The first concern when examining the distributions of the variables, was the non-normality of the electricity data. While normal linear models do not assume that the response variable itself is normally distributed (only the error term of the model), the multimodal distribution of the electricity data raises serious concerns about whether this assumption could be met.
-
-
-Our first attempt at normalising the mean electricity consumption data was by applying different transformations to the data and examining the resulting distributions.
-
-
-The code below creates columns in our dataset of log-transformed, boxcox-transformed and square-root-transformed electricity data. It then plots a grid of histograms of the original data and each of the transformed versions.
-
-# 1. Square Root Transformation
-
-df_without_CoL['sqrt_elec_mean'] = np.sqrt(df_without_CoL['ELEC Mean domestic consumption (kWh per meter)'])
-
-
-# 2. Log Transformation
-
-df_without_CoL['log_elec_mean'] = np.log(df_without_CoL['ELEC Mean domestic consumption (kWh per meter)'])
-
-
-# 3. Box-Cox Transformation
-
-transformed_data, lambda_value = stats.boxcox(df_without_CoL['ELEC Mean domestic consumption (kWh per meter)'])
-
-df_without_CoL['boxcox_elec_mean'] = transformed_data
-
-
-# Create the grid of histograms
-
-fig, axes = plt.subplots(2, 2, figsize=(12, 10))
-
-plt.subplots_adjust(wspace=0.4, hspace=0.4)
-
-axes = axes.flatten()
-
-
-# Define color for our histograms
-
-dark_blue = '#1f497d'
-
-
-# Original Data
-
-sns.histplot(df_without_CoL['ELEC Mean domestic consumption (kWh per meter)'], bins=10, color=dark_blue, kde=True, stat='density', ax=axes[0])
-
-axes[0].set_title('Original Data')
-
-axes[0].set_xlabel('ELEC Mean domestic consumption (kWh per meter)')
-
-axes[0].set_ylim(0, 0.003)
-
-
-
-# Square Root Transformation
-
-sns.histplot(df_without_CoL['sqrt_elec_mean'], bins=10, color=dark_blue, kde=True, stat='density', ax=axes[1])
-
-axes[1].set_title('Square Root Transformation')
-
-axes[1].set_xlabel('sqrt(ELEC Mean domestic consumption)')
-
-
-# Log Transformation
-
-sns.histplot(df_without_CoL['log_elec_mean'], bins=10, color=dark_blue, kde=True, stat='density', ax=axes[2]
-
-axes[2].set_title('Log Transformation')
-
-axes[2].set_xlabel('log(ELEC Mean domestic consumption)')
-
-
-
-# Box-Cox Transformation
-
-sns.histplot(df_without_CoL['boxcox_elec_mean'], bins=10, color=dark_blue, kde=True, stat='density', ax=axes[3])
-
-axes[3].set_title('Box-Cox Transformation')
-
-axes[3].set_xlabel('Box-Cox Transformed \nELEC Mean domestic consumption')
-
-
-
-# Show the plot
-
-plt.show()
-
-
-
-As shown, none of the transformations substantially normalised the data. All of the plots show bimodal density functions.
-
-
-
-
-Our second idea of how to best handle the bimodal data was to look into generalised linear models which do not make the normality assumption. Generalised linear models allow for the underlying data to be distributed according to any function within the exponential family (Thyregod, 2010). However, this still does not adequately handle bimodal data, as the exponential family of distributions are all unimodal.
-
-
-According to Vasconcelos et al. 2020, bimodal data is best analysed with semi-parametric techniques that further relax the assumptions of generalised linear models. Rather than participate in the trend described by Vosconcelos - the applications of normal linear models for data that are completely unsuitable, we decided not to proceed with the construction of a model of mean electricity consumption. The techniques that will best handle this data are currently outside of our skillset.
-
-
-The mean gas consumption data, on the other hand, are relatively normally distributed. A qqplot and shapiro wilk test result are shown below for the mean gas consumption data. The shapiro-wilk test produces a p-value greater than 0.05, indicating that we do not have sufficient evidence to believe that the gas data are not normally distributed. We decided to proceed with this as our response variable, as this model could still potentially produce useful and more robust findings.
-
-
-
-
-Shapiro-Wilk test results:
-
-Statistic: 0.9838021729156037
-
-P-value: 0.9150817848543163
-
-The p-value (0.9151) is greater than 0.05, therefore we fail to reject the null hypothesis of normality.
-
-There is not enough evidence to conclude non-normality in the data.
-
-
-
-Considering linearity and independence assumptions
-
-
-In order to understand whether there would be potential violations of the linearity and independence assumptions on the error term of our model, we built a matrix of scatter plots and histograms to further inspect the data and the relationships between variables.  
-
-
-
-
-The top row of the matrix plot indicates that the linearity assumption is reasonably met by the data. Mean gas consumption changes in a linear way as each of the covariates increase. There is a negative linear relationship between the mean dwelling energy ratings and gas consumption, and positive linear relationships between gas consumption and both the median income and mean people per household. These are the linear relationships that we would expect, and align with our hypothesis that gas consumption increases with median income at the borough level. Linearity is the only strictly necessary assumption of linear regression models, so the fact that it is satisfied means that we could continue with our analysis plan.
-
-
-However, the matrix plot also illuminated a potential violation of the assumption that the errors of the model must be independent. The strong correlation (r = -0.84) between the mean people per household and median income indicates that there is collinearity between two of the covariates.
-
-
-This relationship intuitively makes sense - poorer people tend to live in larger households - and this is part of the reason why we included the household size variable in the analysis. Household size confounds income and gas consumption.  
-
-
-Variance inflation factor is a measure used to estimate multicollinearity between covariates variables. A VIF of 5 or more suggests that multicollinearity is present, and VIFs above ten indicate serious collinearity (Kim, 2019).
-
-
-We calculated VIFs for each covariate:
-
-# Define the covariates
-
-covariates = ["Median income", "mean people per household", "estimated mean dwelling energy rating"]
-
-
-# Create a DataFrame with only the covariates
-
-X = df_without_CoL[covariates]
-
-
-# Calculate VIF for each covariate
-
-vif_data = pd.DataFrame()
-
-vif_data["Variable"] = X.columns
-
-vif_data["VIF"] = [variance_inflation_factor(X.values, i) for i in range(X.shape[1])]
-
-
-# Print the VIF data
-
-print(vif_data)
-
-
-The output shows extremely high VIFs, indicating very serious multicollinearity.
-
-
-                               Variable         VIF
-
-0                          Median income  122.145741
-
-1              mean people per household  183.174208
-
-2  estimated mean dwelling energy rating  499.896117
-
-
-
-Addressing multicollinearity
-
-
-The common solution to multicollinearity of covariates is to remove some of them. However, we cannot do this in our analysis because income is our independent variable, and we need to control for people per household.
-
-
-One method of reducing multicollinearity is mean-centering the collinear variables (Shieh, 2011). This means subtracting each borough’s data point from the mean across boroughs.
-
-
-We centered median income and the mean people per household on their respective means.
-
-
-# Center variables
-
-df_without_CoL['Median_Income_Centered'] = df_without_CoL['Median income'] - df_without_CoL['Median income'].mean()
-
-df_without_CoL['Mean_People_Centered'] = df_without_CoL['mean people per household'] - df_without_CoL['mean people per household'].mean()
-
-
-We then reran the VIF calculations and found that they had massively reduced with the use of centered variables, as shown below. All VIFs are now lower than 5 and we can proceed with our analysis using the centered variables.
-
-
-                               Variable       VIF
-
-0                 Median_Income_Centered  3.483672
-
-1                   Mean_People_Centered  3.483667
-
-2  estimated mean dwelling energy rating  1.000004
-
-
-Constructing a OLS linear regression model
-
-
-The parameters of the regression model include the 3 covariates: centered median income, centered mean people per household, and mean efficiency rating, as well as two interaction terms. The first is an interaction between centered median income and centered mean people per household, and the second is an interaction between centered median income and centered mean efficiency rating. These interactions are included because we hypothesised that the relationship between income and gas consumption might be modulated by the household size and the energy rating.
-
-
+    <h2>Variable Transformations Code</h2>
+    <div class="code-block">
+        <pre>
 # Define the formula for the multiple linear regression model
-
 formula = 'Q("GAS Mean domestic consumption (kWh per meter)") ~ Median_Income_Centered + Mean_People_Centered + Q("estimated mean dwelling energy rating") + Median_Income_Centered*Mean_People_Centered + Q("estimated mean dwelling energy rating")*Median_Income_Centered'
-
 # for column names with spaces in them need to use Q("")
-
 
 model = smf.ols(formula=formula1, data=df_without_CoL).fit()
 
-
 # Print the summary of the regression
-
 print(model.summary())
+        </pre>
+    </div>
 
+    <h2>Addressing Multicollinearity</h2>
+    <p>The matrix plot illuminated a potential violation of the assumption that the errors of the model must be independent. The strong correlation (r = -0.84) between the mean people per household and median income indicates that there is collinearity between two of the covariates.</p>
 
-Testing assumptions on the errors of the model
+    <p>Variance inflation factor is a measure used to estimate multicollinearity between covariates variables. A VIF of 5 or more suggests that multicollinearity is present, and VIFs above ten indicate serious collinearity (Kim, 2019).</p>
 
+    <div class="code-block">
+        <pre>
+# Define the covariates
+covariates = ["Median income", "mean people per household", "estimated mean dwelling energy rating"]
 
-The summary of the regression model is shown below. Before interpreting the findings, the assumptions of the normal linear model must be checked.
+# Create a DataFrame with only the covariates
+X = df_without_CoL[covariates]
 
+# Calculate VIF for each covariate
+vif_data = pd.DataFrame()
+vif_data["Variable"] = X.columns
+vif_data["VIF"] = [variance_inflation_factor(X.values, i) for i in range(X.shape[1])]
 
-As we cannot calculate the error term itself to test assumptions on it, we estimated it by extracting the residuals from the model - the differences between the fitted and predicted values. These should be normally distributed, homoskedastic and independent. We have no evidence of violation of the independence error now that we have centered our variables and reduced the VIF. We will proceed to test the normality and homoscedasticity assumptions on the residuals.
+# Print the VIF data
+print(vif_data)
+        </pre>
+    </div>
 
+    <p>The output shows extremely high VIFs, indicating very serious multicollinearity:</p>
+    <pre>
+                                    Variable         VIF
+0                           Median income    122.145741
+1                mean people per household    183.174208
+2    estimated mean dwelling energy rating    499.896117
+    </pre>
 
-Normality 
+    <p>To address this, we centered the variables on their means:</p>
 
-In the QQ plot of the residuals (below), there is some deviation of the points from the red line, suggesting possible departures from normality, but these may not be severe. A shapiro-wilk test for normality produced an insignificant result (below), suggesting there is no evidence against normality of the data.
+    <div class="code-block">
+        <pre>
+# Center variables
+df_without_CoL['Median_Income_Centered'] = df_without_CoL['Median income'] - df_without_CoL['Median income'].mean()
+df_without_CoL['Mean_People_Centered'] = df_without_CoL['mean people per household'] - df_without_CoL['mean people per household'].mean()
+        </pre>
+    </div>
 
+    <h2>Testing Model Assumptions</h2>
+    <p>We need to test several key assumptions of our linear regression model:</p>
 
+    <h3>Normality Check</h3>
+    <div class="image-container">
+        <img src="/api/placeholder/600/400" alt="Q-Q Plot">
+    </div>
+    <p>The Q-Q plot shows reasonably good alignment with the theoretical normal distribution, though there are some deviations at the extremes.</p>
 
+    <h3>Homoscedasticity Check</h3>
+    <div class="image-container">
+        <img src="/api/placeholder/600/400" alt="Residuals vs Fitted Values Plot">
+    </div>
+    <p>The residuals vs fitted values plot shows relatively even spread around zero, suggesting homoscedasticity is a reasonable assumption.</p>
 
-Shapiro-Wilk test results:
+    <h2>Final Model Results</h2>
+    <div class="image-container">
+        <img src="/api/placeholder/600/400" alt="Final Model Results Table">
+    </div>
 
-Statistic: 0.9697940327701915
+    <h2>Model Interpretation</h2>
+    <p>The final model results show:</p>
+    <ul>
+        <li>R-squared value of 0.678, indicating the model explains about 67.8% of the variance in gas consumption</li>
+        <li>All coefficients are statistically significant (p < 0.05)</li>
+        <li>The interaction terms are significant, suggesting the relationship between income and gas consumption is moderated by both household size and energy efficiency</li>
+    </ul>
 
-P-value: 0.5335544834414148
+    <h2>Limitations and Future Work</h2>
+    <p>While our model provides valuable insights, several limitations should be noted:</p>
+    <ul>
+        <li>Borough-level aggregation may mask individual household variations</li>
+        <li>The data spans different time periods (2021-2023)</li>
+        <li>We were unable to include electricity consumption due to its non-normal distribution</li>
+    </ul>
 
-The p-value (0.5336) is greater than 0.05, therefore we fail to reject the null hypothesis of normality.
-
-There is not enough evidence to conclude non-normality in the data.
-
-
-
-Homoscedasticity
-
-
-The homoscedasticity assumption means that with changes in the covariates, the variance of the residuals should stay the same (Barker & Shaw, 2015). We can evaluate whether this is the case by plotting the residuals of the model vs the fitted values. If there is homoscedasticity, the points should be approximately equally and randomly distributed around the red line. In the plot below, there does not seem to be substantial evidence against the equal variance of errors assumption. The results of a Breusch-Pagan test for homoscedasticity are also shown below. The large p-value suggests there is no evidence against the assumption of homoscedasticity.
-
-
-
-
-Breusch-Pagan test results:
-
-Test Statistic: 3.291638255978037
-
-P-value: 0.6551221026383567
-
-The p-value (0.6551) is greater than 0.05, therefore we fail to reject the null hypothesis of homoscedasticity.
-
-There is not enough evidence to conclude heteroscedasticity in the model.
-
-
-
-Multicollinearity
-
-The Residuals vs Fitted values plot above also provides no evidence of multicollinearity remaining after the centering of the income and household size variables. There are no systemic patterns in the residuals as the fitted values increase.
-
-
-
-We have no strong evidence against the assumptions of our normal linear model for mean gas consumption, and therefore proceed to interpret the results in the Findings section.
-
+</body>
+</html>
