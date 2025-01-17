@@ -4,53 +4,244 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENERGY-SES: Introduction</title>
-    <!-- Link to shared template styles -->
     <link rel="stylesheet" href="css/template.css">
-    <!-- Page-specific styles -->
     <style>
-        /* Introduction-specific styles */
         .intro-content {
             background: var(--section-bg);
             border-radius: 8px;
             padding: 2rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        /* ... other intro-specific styles ... */
+
+        .intro-section {
+            margin-bottom: 3rem;
+        }
+
+        .intro-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-highlight {
+            background: var(--background-color);
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .methodology-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+
+        .question-highlight {
+            background: var(--background-color);
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .question-highlight p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+
+        
     </style>
 </head>
 <body>
-    <!-- Include shared header -->
     <header>
         <div class="container hero">
             <h1>ENERGY-SES</h1>
-            <p>Socioeconomic Patterns in London's Energy Consumption</p>
+            <p>Socioeconomic Patterns in London's Energy Consumption: A Data Science Analysis</p>
         </div>
     </header>
 
-    <!-- Include shared navigation -->
     <nav>
         <div class="container">
             <ul>
-                <li><a href="index.html" class="active">Introduction</a></li>
+                <li><a href="intro.html" class="active">Introduction</a></li>
                 <li><a href="literature.html">Literature Review</a></li>
-                <!-- ... other navigation items ... -->
+                <li><a href="methodology.html">Methodology</a></li>
+                <li><a href="visualization.html">Visualisation</a></li>
+                <li><a href="findings.html">Findings</a></li>
+                <li><a href="discussion.html">Discussion</a></li>
+                <li><a href="implications.html">Implications & Conclusions</a></li>
+                <li><a href="bibliography.html">Bibliography</a></li>
+                <li><a href="profiles.html">Our Profiles</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Page-specific content -->
     <main>
         <div class="container">
             <div class="intro-content">
-                <!-- Introduction content -->
+                <div class="intro-section">
+                    <h3>Research Context & Significance</h3>
+                    <p>In an era where energy costs have risen by over 60% since 2021, understanding the relationship between socioeconomic factors and energy consumption has never been more critical. With £3 billion in household energy debt affecting 2.3 million UK households, and the fuel poverty gap increasing by 67% between 2020-2023 (Committee on Fuel Poverty, 2024), our research aims to use data science to understand and address these pressing social challenges.</p>
+                    
+                    <div class="quote-box" style="background: #f8f9fa; border-left: 4px solid var(--accent-color); padding: 1.5rem; margin: 1.5rem 0; font-style: italic;">
+                        <p>"While energy prices have stabilised and the energy price cap has fallen further, energy bills remain significantly higher than we have been used to. Many households have been struggling to pay for the energy they need, facing difficult decisions."</p>
+                        <small>- Ofgem Affordability and Debt Report, March 2024</small>
+                    </div>
+
+                    <div class="data-highlight" style="margin-top: 1rem;">
+                        <p><strong>Why This Matters:</strong></p>
+                        <ul>
+                            <li>24.7% of households in regions like Stoke-on-Trent face fuel poverty<sup>1</sup></li>
+                            <li>Average energy arrears of £1,761 for households without repayment plans<sup>2</sup></li>
+                            <li>Disproportionate impact on lower-income areas, with 35.1% of fuel poor households in private rented sector<sup>1</sup></li>
+                        </ul>
+                    </div>
+
+                    <p style="margin-top: 1rem;">This quantitative analysis explores these patterns across London boroughs, using comprehensive datasets to understand how income levels, energy efficiency ratings, and consumption patterns interact. By applying advanced statistical methods, we aim to provide evidence-based insights for policy interventions and social solutions.</p>
+                    
+                    <div style="font-size: 0.9rem; margin-top: 2rem; color: #666;">
+                        <p><sup>1</sup> House of Commons Library, "Fuel Poverty in the UK" (February 2024)<br>
+                        <sup>2</sup> Committee on Fuel Poverty Annual Report 2024</p>
+                    </div>
+                </div>
+
+                <!-- Key Dataset Statistics -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="number">32</div>
+                        <p>London Boroughs Analyzed</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">3.4M</div>
+                        <p>Households in Dataset</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">67.8%</div>
+                        <p>Consumption Variation Explained</p>
+                    </div>
+                </div>
+
+                <!-- Research Question -->
+                <div class="intro-section">
+                    <h3>Research Question & Variables</h3>
+                    <p>Our analysis focuses on the relationship between household income and gas consumption, while controlling for key variables:</p>
+                    
+                    <div class="data-highlight">
+                        <p><strong>Primary Variables:</strong></p>
+                        <ul>
+                            <li>Dependent: Annual gas consumption (kWh)</li>
+                            <li>Independent: Average household income</li>
+                            <li>Control: Energy efficiency rating (EPC)</li>
+                            <li>Control: Average household size</li>
+                        </ul>
+                    </div>
+
+                    <p>Using multiple regression analysis, we examine whether higher-income households consume more gas when controlling for dwelling efficiency and household size.</p>
+
+                       
+                    <div class="question-highlight">
+                        <p>Do households in boroughs with higher earners consume more gas, when average people per household and energy efficiency of dwellings are controlled for?</p>
+                    </div>
+
+                    <p>This research hypothesizes that higher-income households do consume more gas under these controlled conditions. By applying statistical modeling, this study delves into the interplay of income, household size, and energy efficiency, further exploring how these factors interact to influence domestic gas consumption.</p>
+                </div>
+
+
+
+                <!-- Methodology Overview -->
+                <div class="intro-section">
+                    <h3>Data Science Approach</h3>
+                    <div class="methodology-grid">
+                        <div class="methodology-card">
+                            <h4>Data Collection</h4>
+                            <p>Integration of borough-level datasets from government sources, energy providers, and demographic surveys.</p>
+                        </div>
+                        <div class="methodology-card">
+                            <h4>Statistical Analysis</h4>
+                            <p>Multiple regression modeling with testing of assumptions and validation procedures.</p>
+                        </div>
+                        <div class="methodology-card">
+                            <h4>Visualization</h4>
+                            <p>Data visualizations to explore patterns and relationships.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Study Parameters & Expected Impact -->
+                <div class="intro-section">
+                    <h3>Study Parameters & Expected Impact</h3>
+                    <p>The analysis covers the period 2021-2024, during which energy markets experienced unprecedented volatility and social pressures intensified. Our dataset incorporates:</p>
+                    <ul>
+                        <li>Monthly gas consumption patterns across income groups</li>
+                        <li>Detailed household income and expenditure surveys</li>
+                        <li>Energy Performance Certificate (EPC) ratings database</li>
+                        <li>Granular borough demographic and socioeconomic profiles</li>
+                    </ul>
+                    <p>Through statistical analysis including tests for multicollinearity, heteroscedasticity, and normal distribution of residuals, we aim to:</p>
+                    <div class="methodology-grid">
+                        <div class="methodology-card">
+                            <h4>Policy Impact</h4>
+                            <p>Provide data-driven insights for targeted energy support policies</p>
+                        </div>
+                        <div class="methodology-card">
+                            <h4>Social Understanding</h4>
+                            <p>Quantify the relationship between income and energy consumption</p>
+                        </div>
+                        <div class="methodology-card">
+                            <h4>Future Planning</h4>
+                            <p>Inform strategies for reducing energy inequality</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
-    <!-- Include shared footer -->
     <footer>
         <div class="container">
-            <p>© 2024 ENERGY-SES Project • QM2 Group XX</p>
+            <p>© 2024 ENERGY-SES Project • QM2: Data Science and Visualisation</p>
         </div>
     </footer>
 </body>
